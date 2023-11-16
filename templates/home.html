@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            filter: brightness(1); 
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Overlay color and transparency */
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1; /* Place content above the overlay */
+            position: relative;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .login-box {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f8ff; /* Light Blue */
+            border: 1px solid #3498db; /* Dodger Blue */
+            border-radius: 8px;
+        }
+
+        h3 {
+            color: #3498db;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: #777;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            color: #d9534f;
+        }
+
+        .messages li {
+            background-color: #f2dede;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ebccd1;
+            border-radius: 4px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            filter: brightness(0.8); /* Adjust brightness of the image */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h2>Welcome to the AI Car Free Spaces Detection using OpenCV application</h2>
+
+        <div class="login-box">
+            <h3>Login</h3>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <form method="post" action="{{ url_for('home') }}">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+        </div>
+    </div>
+</body>
+
+</html>
